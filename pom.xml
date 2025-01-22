@@ -50,6 +50,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.opencv</groupId>
+			<artifactId>opencv</artifactId>
+			<version>4.10.0</version>
+			<scope>system</scope>
+			<systemPath>C:/opencv/build/java/opencv-4100.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<build>
