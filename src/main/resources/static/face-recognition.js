@@ -40,7 +40,6 @@ async function loadCascade() {
 
 async function onCVLoad() {
     if (cv.getBuildInformation) {
-        console.log(cv.getBuildInformation());
         let data = await loadCascade();
         cv.FS_createDataFile('/', 'haarcascade_frontalface_default.xml', data, true, false, false);
         faceCascade = new cv.CascadeClassifier();
@@ -49,7 +48,6 @@ async function onCVLoad() {
     } else {
         if (cv instanceof Promise) {
             cv = await cv;
-            console.log(cv.getBuildInformation());
             let data = await loadCascade();
             cv.FS_createDataFile('/', 'haarcascade_frontalface_default.xml', data, true, false, false);
             faceCascade = new cv.CascadeClassifier();
@@ -57,7 +55,6 @@ async function onCVLoad() {
             playVideo();
         } else {
             cv['onRuntimeInitialized'] = async () => {
-                console.log(cv.getBuildInformation());
                 let data = await loadCascade();
                 cv.FS_createDataFile('/', 'haarcascade_frontalface_default.xml', data, true, false, false);
                 faceCascade = new cv.CascadeClassifier();
@@ -79,7 +76,6 @@ function processVideo() {
     faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0);
     for (let i = 0; i < faces.size(); ++i) {
         let face = faces.get(i);
-        console.log(face)
         ctx.strokeStyle = 'red';
         ctx.lineWidth = 2;
         ctx.strokeRect(face.x, face.y, face.width, face.height);
