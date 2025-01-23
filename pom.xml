@@ -51,11 +51,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.opencv</groupId>
+			<groupId>org.openpnp</groupId>
 			<artifactId>opencv</artifactId>
-			<version>4.10.0</version>
-			<scope>system</scope>
-			<systemPath>C:/opencv/build/java/opencv-4100.jar</systemPath>
+			<version>4.5.1-2</version>
 		</dependency>
 	</dependencies>
 

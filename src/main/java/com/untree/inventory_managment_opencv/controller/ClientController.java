@@ -14,7 +14,12 @@ public class ClientController {
 
     @GetMapping("/login")
     public String login() {
-        return new String();
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String getMethodName() {
+        return "register";
     }
 
 }
