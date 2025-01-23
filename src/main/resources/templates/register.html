@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Test</title>
+    <title>Registro</title>
     <link rel="stylesheet" href="output.css">
+
 </head>
 
 <body class="">
@@ -19,16 +20,20 @@
             <div th:if="${error}" class="text-white w-full bg-red-400 rounded-md p-2 mt-10">
                 <p th:text="${error}"></p>
             </div>
-            <form th:action="@{/login}" method="post" class="flex flex-col gap-4 mt-4 mb-16">
+            <form th:action="@{/register}" method="post" class="flex flex-col gap-4 mt-4 mb-16">
                 <div class="flex flex-col gap-1">
                     <label for="email">Email</label>
                     <input id="email" name="email" type="text" class="rounded-md p-2 bg-transparent pl-4"
                         placeholder="Digite seu email">
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label for="password">Senha</label>
-                    <input id="password" name="password" type="password" class="rounded-md p-2 bg-transparent pl-4"
-                        placeholder="Digite sua senha">
+                    <label for="password">Senha</label><input id="password" name="password" type="password"
+                        class="rounded-md p-2 bg-transparent pl-4" placeholder="Digite sua senha">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="confirmPassword">Confirme a Senha</label><input id="confirmPassword"
+                        name="confirmPassword" type="password" class="rounded-md p-2 bg-transparent pl-4"
+                        placeholder="Confirme sua senha">
                 </div>
                 <div class="flex justify-center items-center h-full">
                     <video class="rounded-md border-4 border-secondary hidden" id="input_video" height="240"
@@ -41,21 +46,28 @@
                         imagem</button></div>
                 <script src="face-recognition.js"></script>
                 <script async src="https://docs.opencv.org/master/opencv.js" id="opencvjs" onload="onCVLoad()"></script>
-                <button id="login-submit" type="submit"
-                    class="bg-white rounded-full text-primary h-10 font-bold mt-6">Entrar</button>
+                <button id="register-submit" type="submit"
+                    class="bg-white rounded-full text-primary h-10 font-bold mt-6">Registrar</button>
             </form>
-
             <div>
-                <p>Não possui cadastro?</p>
-                <a href="/register" class="underline">Cadastrar</a>
+                <p>Já possui conta?</p>
+                <a href="/login" class="underline">Entre aqui</a>
             </div>
         </div>
     </main>
+
     <script>
 
-        document.getElementById('login-submit').addEventListener('click', function (event) {
+        document.getElementById('register-submit').addEventListener('click', function (event) {
             event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
 
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem');
+                return;
+            }
 
             document.querySelector('form').submit();
         });
