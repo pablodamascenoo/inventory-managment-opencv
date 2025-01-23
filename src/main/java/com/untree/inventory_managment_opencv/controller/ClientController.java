@@ -12,9 +12,4 @@ public class ClientController {
         return "index";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return new String();
-    }
-
 }
