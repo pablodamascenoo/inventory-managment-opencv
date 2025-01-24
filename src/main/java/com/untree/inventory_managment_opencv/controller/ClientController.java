@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.untree.inventory_managment_opencv.model.User;
 import com.untree.inventory_managment_opencv.repository.UserRepository;
+import com.untree.inventory_managment_opencv.service.ImageHashService;
+import com.untree.inventory_managment_opencv.service.ImageProcessingService;
 
 import org.springframework.ui.Model;
 
@@ -18,6 +20,12 @@ public class ClientController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ImageHashService imageHashService;
+
+    @Autowired
+    private ImageProcessingService imageProcessingService;
 
     @GetMapping("/")
     public String index() {
@@ -45,9 +53,19 @@ public class ClientController {
             return "login"; // Redirecionar para a página de login se as credenciais forem inválidas
         }
 
-        // Verificar se a imagem facial corresponde à imagem registrada
-
-        return "redirect:/"; // Redirecionar para a página inicial após o login
+        try {
+            // Verificar se o hash da imagem facial corresponde ao armazenado
+            String faceHash = imageHashService.generateImageHash(faceImage);
+            if (!faceHash.equals(user.getFaceHash())) {
+                model.addAttribute("error", "Imagem facial não corresponde");
+                return "login";
+            }
+    
+            return "redirect:/"; // Redirecionar para a página inicial após o login bem-sucedido
+        } catch (Exception e) {
+            model.addAttribute("error", "Erro ao processar a imagem facial");
+            return "login";
+        }
     }
 
     @PostMapping("/register")
@@ -65,11 +83,20 @@ public class ClientController {
             return "register"; // Redirecionar para a página de registro se o e-mail já estiver registrado
         }
 
-        User user = new User(email, password, faceImage);
-
-        userRepository.save(user);
-
-        return "redirect:/login"; // Redirecionar para a página de login após o registro
+        try {
+            // Gera o hash da imagem facial
+            String faceHash = imageHashService.generateImageHash(faceImage);
+        
+            // Cria o usuário com o hash facial
+            User user = new User(email, password, faceHash);
+        
+            userRepository.save(user);
+        
+            return "redirect:/login";
+        } catch (Exception e) {
+            model.addAttribute("error", "Erro ao processar a imagem facial");
+            return "register";
+        }        
     }
 
 }

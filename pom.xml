@@ -54,11 +54,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.openpnp</groupId>
 			<artifactId>opencv</artifactId>
-			<version>4.5.1-2</version>
-		</dependency>
+			<version>4.10.0-0</version>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>
