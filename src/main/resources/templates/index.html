@@ -18,19 +18,24 @@
         </div>
     </header>
     <!-- SIDEBAR -->
-    <aside class="bg-secondary w-64 p-4 absolute h-[calc(100vh-64px)]">
-        <nav class="flex flex-col justify-between h-full">
-            <div class="flex flex-col flex-1">
-                <a href="/camera" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Camera</a>
-                <!-- <a href="#" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Dashboard</a>
-                <a href="#" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Produtos</a>
-                <a href="#" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Usuários</a> -->
-            </div>
-            <button class="p-4 font-semibold transition-all duration-300 hover:bg-purple-600 rounded-md">Logout</button>
-        </nav>
-    </aside>
     <!-- MAIN -->
-    <main class="p-4">
+    <main class="flex">
+        <aside class="bg-secondary w-64 p-4 h-[calc(100vh-64px)]">
+            <nav class="flex flex-col justify-between h-full">
+                <div class="flex flex-col flex-1">
+                    <a href="/camera" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Camera</a>
+                    <a href="#" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Dashboard</a>
+                    <a href="#" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Produtos</a>
+                    <a href="#" class="p-4 transition-all duration-300 hover:bg-purple-600 rounded-md">Usuários</a>
+                </div>
+                <button
+                    class="p-4 font-semibold transition-all duration-300 hover:bg-purple-600 rounded-md">Logout</button>
+            </nav>
+        </aside>
+        <div class="flex-1 flex p-4 justify-center items-center">
+            <h1 class="text-4xl font-bold text-gray-400/20">EM DESENVOLVIMENTO</h1>
+        </div>
+
     </main>
 </body>
 
